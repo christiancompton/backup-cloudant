@@ -3,7 +3,6 @@ var path = require("path");
 var fs = require("fs");
 var cfenv = require("cfenv");
 
-
 console.log("environment.exports() : process.env", process.env);
 
 var environment = {};
@@ -78,6 +77,8 @@ else
 
     copyEnvironment(process.env, environment, true);
 
+    environment.VCAP_APP_PORT = environment.appEnv.port;
+    environment.VCAP_APP_HOST = environment.appEnv.bind;
     environment.VCAP_APPLICATION = JSON.parse(process.env.VCAP_APPLICATION);
     environment.VCAP_SERVICES    = JSON.parse(process.env.VCAP_SERVICES);
 }

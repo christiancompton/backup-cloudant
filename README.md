@@ -1,6 +1,6 @@
-# CouchDB Backup & Object Storage Overview
+# CouchDB Backup & Cloud Object Storage Overview
 
-This web application is intended to backup all documents in a CouchDB database, such as Cloudant, to IBM's Object Storage for Bluemix.
+This web application is intended to backup all documents in a CouchDB database, such as [Cloudant](https://console.bluemix.net/docs/services/cloudant/), to [IBM Cloud Object Storage](https://console.bluemix.net/docs/services/cloud-object-storage/) for Bluemix.
 
 For detailed information about how to perform these operations, see the [developerWorks recipe](https://developer.ibm.com/recipes/tutorials/object-storage-cloudant-backup/) that uses this project.
 
@@ -13,15 +13,14 @@ If using non-bound CouchDB and Object Storage instances:
 The information in the manifest will need to be overwritten with the credentials from the remote targets.
 
 
-
-##How does it work?
+## How does it work?
 
 The primary mechanism in this application is a call to the [couchbackup node module](https://developer.ibm.com/clouddataservices/2016/03/22/simple-couchdb-and-cloudant-backup/), which gets all documents from the specified database, and stores them in a text file.  Once complete, the .txt file is uploaded to Object Storage for Bluemix, with the name of the file as the timestamp of the transaction, inside of a container named by the YEAR-MONTH convention.
 
 
 The default is to run the backup job once every 24 hours, or every 86400000 milliseconds, but this is easy to modify in the manifest.
 
-##How to Restore:
+## How to Restore:
 
 In order to restore a database, see the [couchbackup tutorial](https://developer.ibm.com/clouddataservices/2016/03/22/simple-couchdb-and-cloudant-backup/) for detailed information.  Since restoration should not be a regular occurrence, it is not automated in this application.
 
@@ -32,6 +31,3 @@ Once you have the file, make sure that the **couchdb** node module is installed 
 ```cat <filename>.txt | env COUCH_URL=<couchdb_url> couchrestore --db <name of existing db to restore>```
 
 One very important stipulation - **the database that is being restored must exist** before this command will work.  If the database does not exist, the restore will not work.  Additionally, it is best practice to restore to a new, empty database, rather than attempt to overwrite
-
-
-

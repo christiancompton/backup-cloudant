@@ -10,9 +10,6 @@ applications:
     backup_interval: 86400000
     database_name: "database"
     cloudant_url: ""
-    os_auth_url: ""
-    os_projectId: ""
-    os_domainId: ""
-    os_username: ""
-    os_password: ""
-    os_region: ""
+    cos_endpoint_url: "https://s3-api.us-geo.objectstorage.softlayer.net"
+    cos_api_key: ""
+    cos_resource_instance_id: ""
