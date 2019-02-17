@@ -1,6 +1,6 @@
 # CouchDB Backup & Cloud Object Storage Overview
 
-This web application is intended to backup all documents in a CouchDB database, such as [Cloudant](https://console.IBM Cloud.net/docs/services/cloudant/), to [IBM Cloud Object Storage](https://console.bluemix.net/docs/services/cloud-object-storage/) for IBM Cloud.
+This web application is intended to backup all documents in a CouchDB database, such as [Cloudant](https://console.bluemix.net/catalog/services/cloudant), to [IBM Cloud Object Storage](https://console.bluemix.net/catalog/services/cloud-object-storage) for IBM Cloud.
 
 For detailed information about how to perform these operations, see the [developerWorks recipe](https://developer.ibm.com/recipes/tutorials/object-storage-cloudant-backup/) that uses this project.
 
