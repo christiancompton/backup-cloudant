@@ -9,11 +9,13 @@ applications:
   env:
     backup_interval: 86400000
     database_name: "database"
+    # For Cloudant, either provide URL with user name and pwd or API key and host. If API Key is provided, URL is ignored.
     # For legacy Cloudant authentication, url is in form https://myusername:mypassword@myhost.cloudant.com
-    cloudant_url: ""
-    # For IAM authentication url is w/o username and pwd; instead, provide an API key:
+    # Host is in form of "host.cloudant.com" (note: without the "https://")
+    # cloudant_url: "https://username:password@host.cloudant.com"
     cloudant_apikey: ""
-    cos_endpoint_url: "https://s3-api.us-geo.objectstorage.softlayer.net"
+    cloudant_host: "myhost.cloudant.com"
+    cos_endpoint_url: "s3.eu-de.cloud-object-storage.appdomain.cloud"
     cos_api_key: ""
     cos_resource_instance_id: ""
     # See https://console.bluemix.net/docs/services/cloud-object-storage/basics/classes.html#locationconstraint for valid bucket LocationConstraints, also called "region"

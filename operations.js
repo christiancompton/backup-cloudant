@@ -25,11 +25,12 @@ exports.backupCloudObjectStorage = function() {
     if (credentials.apikey) {
       opts = { iamApiKey: credentials.apikey };
       console.log("Using IAM authentication for Cloudant");
+      var sourceUrl = 'https://' + credentials.host + '/' + database_name;
     } else {  // Using legacy auth with username password in URL
       console.log("Using legacy authentication for Cloudant");
       opts = {};
+      var sourceUrl = credentials.url + '/' + database_name;
     };
-    var sourceUrl = credentials.url + '/' + environment.database_name;
 
   } else {
     console.log("Using Remote Cloudant");
@@ -37,12 +38,13 @@ exports.backupCloudObjectStorage = function() {
     if (environment.cloudant_apikey) { // Using IAM auth for Cloudant
       opts = { iamApiKey: environment.cloudant_apikey };
       console.log("Using IAM authentication for Cloudant");
+      var sourceUrl = 'https://' + environment.cloudant_host + '/' + database_name;
     } else {  // Using legacy auth with username password in URL
       console.log("Using legacy authentication for Cloudant");
       opts = {};
+      var sourceUrl = environment.cloudant_url + '/' + database_name;
     };
 
-    var sourceUrl = environment.cloudant_url + '/' + environment.database_name;
   }
     
   couchbackup.backup(sourceUrl, fs.createWriteStream("backup.txt"), opts, function(err, obj) {
