@@ -1,21 +1,23 @@
 # CouchDB Backup & Cloud Object Storage Overview
 
-This web application is intended to backup all documents in a CouchDB database, such as [Cloudant](https://console.bluemix.net/docs/services/cloudant/), to [IBM Cloud Object Storage](https://console.bluemix.net/docs/services/cloud-object-storage/) for Bluemix.
+This web application is intended to backup all documents in a CouchDB database, such as [Cloudant](https://console.bluemix.net/catalog/services/cloudant), to [IBM Cloud Object Storage](https://console.bluemix.net/catalog/services/cloud-object-storage) for IBM Cloud.
 
 For detailed information about how to perform these operations, see the [developerWorks recipe](https://developer.ibm.com/recipes/tutorials/object-storage-cloudant-backup/) that uses this project.
 
-It can be run in Bluemix or in other environments that support Node.js runtimes and can install the necessary node module dependencies.
+It can be run in IBM Cloud or in other environments that support Node.js runtimes and can install the necessary node module dependencies.
 
-If running in Bluemix and using Bound Object Storage and/or Cloudant Instances:
+If running in IBM Cloud and using Bound Object Storage and/or Cloudant Instances:
+
 The application will read in the credentials for these services using the information from the VCAP Services data.  The only value you would need to supply in the file is the name of the database to be backed up.
 
 If using non-bound CouchDB and Object Storage instances:
+
 The information in the manifest will need to be overwritten with the credentials from the remote targets.
 
 
 ## How does it work?
 
-The primary mechanism in this application is a call to the [couchbackup node module](https://developer.ibm.com/clouddataservices/2016/03/22/simple-couchdb-and-cloudant-backup/), which gets all documents from the specified database, and stores them in a text file.  Once complete, the .txt file is uploaded to Object Storage for Bluemix, with the name of the file as the timestamp of the transaction, inside of a container named by the YEAR-MONTH convention.
+The primary mechanism in this application is a call to the [couchbackup node module](https://developer.ibm.com/clouddataservices/2016/03/22/simple-couchdb-and-cloudant-backup/), which gets all documents from the specified database, and stores them in a text file.  Once complete, the .txt file is uploaded to Object Storage for IBM Cloud, with the name of the file as the timestamp of the transaction, inside of a container named by the YEAR-MONTH convention.
 
 
 The default is to run the backup job once every 24 hours, or every 86400000 milliseconds, but this is easy to modify in the manifest.
